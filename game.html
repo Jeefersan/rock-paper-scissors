@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <header><h1>Rock Paper Scissors</h1></header>
+  </body>
+
+  <script>
+    function capitalize(input) {
+      let str = input.toLowerCase();
+      let firstLetter = str[0].toUpperCase();
+      let subString = str.slice(1);
+      return firstLetter + subString;
+    }
+
+    let playerScore = 0;
+    let computerScore = 0;
+    game();
+
+    function computerPlay() {
+      let random = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+      let computerChoice;
+      switch (random) {
+        case 1:
+          computerChoice = "Rock";
+          break;
+        case 2:
+          computerChoice = "Paper";
+          break;
+        case 3:
+          computerChoice = "Scissors";
+          break;
+        default:
+          break;
+      }
+      return computerChoice;
+    }
+
+    function game() {
+      let playRounds = 5;
+
+      for (let i = 0; i < playRounds; i++) {
+        let playerInput = prompt("Enter your choice (rock, paper or scissors");
+        let playerChoice = capitalize(playerInput);
+        playRound(playerChoice, computerPlay());
+      }
+
+      alert(
+        `Results of this game:\nPlayer has won ${playerScore} rounds and computer has won ${computerScore}`
+      );
+
+      if (playerScore == computerScore) {
+        alert("The final result is a Tie!");
+      } else {
+        if (playerScore > computerScore) {
+          alert("Congratulations, you are the winner!");
+        } else {
+          alert("Too bad, computer wins!");
+        }
+      }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection == computerSelection) {
+        console.log(`You have both selected ${playerSelection}, it's a Tie!`);
+      } else {
+        if (isPlayerWinner(playerSelection, computerSelection)) {
+          console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+          playerScore++;
+        } else {
+          console.log(
+            `You Lose! ${computerSelection} beats ${playerSelection}`
+          );
+          computerScore++;
+        }
+      }
+    }
+
+    function isPlayerWinner(a, b) {
+      let hasPlayerWon;
+      switch (a) {
+        case "Rock":
+          hasPlayerWon = b === "Scissors";
+          break;
+        case "Paper":
+          hasPlayerWon = b === "Rock";
+          break;
+        case "Scissors":
+          hasPlayerWon = b === "Paper";
+          break;
+        default:
+          hasPlayerWon = true;
+          break;
+      }
+      return hasPlayerWon;
+    }
+  </script>
+</html>

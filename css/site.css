@@ -1,0 +1,44 @@
+body {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+img {
+  width: 100%;
+  max-width: 480px;
+  margin: 1rem auto;
+}
+
+.btn {
+  line-height: 2rem;
+  margin: 4px 3rem;
+  padding: 4px 24px;
+  font-size: large;
+}
+
+.btn-choice {
+  font-size: xx-large;
+  padding: 8px 16px;
+  margin: 4px 8px;
+  width: 200px;
+}
+
+.scores-container {
+  max-width: 400px;
+  display: inline-block;
+}
+
+.btn-game-container {
+  display: block;
+  margin: 2rem auto;
+}
+
+#main {
+  min-width: 800px;
+}
+
+#player-score {
+}
+
+#robo-score {
+}
