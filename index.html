@@ -1,134 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/site.css" />
-    <title>Rock Paper Scissors</title>
-  </head>
-  <body>
-    <header><h1>Rock Paper Scissors</h1></header>
-
-    <div id="main">
-      <div class="btn-game-container">
-        <button class="btn">START GAME</button>
-        <button class="btn">RESET GAME</button>
-      </div>
-      <div">
-        <div class="scores-container">
-          <img src="images/you.jpg" alt="You">
-          <h2>You</h2>
-          <p id="player-score"></p>
-        </div>
-        <div class="scores-container">
-          <img src="images/robocomp.png" alt="Robocomp">
-          <h2>Robo-Computer</h2>
-          <p id="computer-score"></p>
-        </div>
-        <div></div>
-      </div>
-
-      <div class="btn-choice-container">
-        <button class="btn-choice">ROCK</button>
-        <button class="btn-choice">PAPER</button>
-        <button class="btn-choice">SCISSORS</button>
-      </div class="result-container">
-        <p id="roundResult"></p>
-
-    </div>
-  </body>
-
-  <script src="js/script.js"></script>
-</html>
-=======
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <link rel="stylesheet" href="css/site.css" />
+  <title>Rock Paper Scissors</title>
 </head>
 
-<body></body>
+<body>
+  <header>
+    <h1>Rock Paper Scissors</h1>
+  </header>
 
-<script>
-  function capitalize(input) {
-    let str = input.toLowerCase();
-    let firstLetter = str[0].toUpperCase();
-    let subString = str.slice(1);
-    return firstLetter + subString;
-  }
+  <div id="main">
+    <div class="btn-game-container">
+      <button class="btn-game" id="btn-start">START GAME</button>
+      <button class="btn-game" id="btn-reset">RESET GAME</button>
+    </div>
+    <div class="round-info"></div>
 
-  let playerScore = 0;
-  let computerScore = 0;
-  game();
+    <div">
+      <div class="scores-container">
+        <img src="images/you.jpg" alt="You">
+        <h2>You</h2>
+        <p id="player-score"></p>
+      </div>
+      <div class="scores-container">
+        <img src="images/robocomp.png" alt="Robocomp">
+        <h2>Robo-Computer</h2>
+        <p id="computer-score"></p>
+      </div>
+      <div>
+        <p id="round-info"></p>
+      </div>
+  </div>
 
-  function computerPlay() {
-    const choices = ['Rock', 'Paper', 'Scissors'];
-    let random = Math.floor(Math.random() * 3);
+  <div class="btn-choice-container">
+    <button class="btn-choice" id="Rock" value="Rock">Rock</button>
+    <button class="btn-choice" id="Paper" value="Paper">Paper</button>
+    <button class="btn-choice" id="Scissors" value="Scissors">Scissors</button>
+  </div class="result-container">
+  <p id="result"></p>
 
-    return choices[random];
-  }
+  </div>
 
-  function game() {
-    let playRounds = 5;
+  </div>
+</body>
 
-    for (let i = 0; i < playRounds; i++) {
-      let playerInput = prompt("Enter your choice (rock, paper or scissors");
-      let playerChoice = capitalize(playerInput);
-      playRound(playerChoice, computerPlay());
-    }
-
-    alert(
-      `Results of this game:\nPlayer has won ${playerScore} rounds and computer has won ${computerScore}`
-    );
-
-    if (playerScore == computerScore) {
-      alert("The final result is a Tie!");
-    } else {
-      if (playerScore > computerScore) {
-        alert("Congratulations, you are the winner!");
-      } else {
-        alert("Too bad, computer wins!");
-      }
-    }
-  }
-
-  function playRound(playerSelection, computerSelection) {
-    if (playerSelection == computerSelection) {
-      console.log(`You have both selected ${playerSelection}, it's a Tie!`);
-    } else {
-      if (isPlayerWinner(playerSelection, computerSelection)) {
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-        playerScore++;
-      } else {
-        console.log(
-          `You Lose! ${computerSelection} beats ${playerSelection}`
-        );
-        computerScore++;
-      }
-    }
-  }
-
-  function isPlayerWinner(a, b) {
-    let hasPlayerWon;
-    switch (a) {
-      case "Rock":
-        hasPlayerWon = b === "Scissors";
-        break;
-      case "Paper":
-        hasPlayerWon = b === "Rock";
-        break;
-      case "Scissors":
-        hasPlayerWon = b === "Paper";
-        break;
-      default:
-        hasPlayerWon = true;
-        break;
-    }
-    return hasPlayerWon;
-  }
-</script>
+<script src="js/script.js"></script>
 
 </html>
->>>>>>> 5b9da54e6af8fc12f3dfcc56cb63ef504b57fef5
