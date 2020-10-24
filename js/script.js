@@ -15,7 +15,7 @@ function computerPlay() {
 
 function game() {
   alert("The battle has started!");
-  setScore();
+  updateScores();
 
   setupChoiceButtons();
 
@@ -29,6 +29,7 @@ function setupChoiceButtons() {
     btn.addEventListener("click", () => {
       playRound(btn.id);
     });
+    btn.disabled = false;
   });
 }
 
@@ -39,7 +40,7 @@ function setupGameButtons() {
   resetBtn.addEventListener("click", resetGame);
 }
 
-function setScore(didPlayerWin) {
+function updateScores() {
   // if (didPlayerWin) _playerScore++;
   // else _computerScore++;
 
@@ -51,12 +52,13 @@ function setScore(didPlayerWin) {
 }
 
 function displayResult(gameResult) {
-  const result = document.getElementById("result");
+  const result = document.getElementById("round-result");
   result.textContent = gameResult;
 }
 
 function playRound(playerSelection) {
   const computerSelection = computerPlay();
+  displayRoundInfo();
 
   let result;
   `You Win! ${playerSelection} beats ${computerSelection}`;
@@ -74,46 +76,60 @@ function playRound(playerSelection) {
       _computerScore++;
     }
   }
-  setScore();
+  updateScores();
 
   displayResult(result);
   gameCount++;
 
   if (gameCount == totalPlayRounds) {
-    announceWinner();
+    gameOver();
   }
 }
 
 function displayRoundInfo() {
   const roundInfo = document.getElementById("round-info");
-  if (gameCount == 5) {
+  if (gameCount == totalPlayRounds - 1) {
     roundInfo.textContent = "FINAL ROUND!";
   } else {
-    roundInfo.textContent = "ROUND: " + gameCount;
+    roundInfo.textContent = "ROUND: " + (gameCount + 1);
   }
 }
 
-function announceWinner() {
-  alert(
-    `Results of this game:\nPlayer has won ${playerScore} rounds and computer has won ${computerScore}`
-  );
+function displayFinalResult() {
+  const finalResult = document.getElementById("final-result");
+  const winnerResult = document.getElementById("winner-result");
+  let result = `Results of this game:\nPlayer has won ${_playerScore} rounds and computer has won ${_computerScore}`;
+  finalResult.textContent = result;
+  let winResult = "";
 
   if (_playerScore == _computerScore) {
-    alert("The final result is a Tie!");
+    winResult = "The final result is a Tie!";
   } else {
     if (_playerScore > _computerScore) {
-      alert("Congratulations, you are the winner!");
+      winResult += "Congratulations, you are the winner!";
     } else {
-      alert("Too bad, computer wins!");
+      winResult += "Too bad, robo computer wins!";
     }
   }
+  winnerResult.textContent = winResult;
+}
+
+function gameOver() {
+  displayFinalResult();
+  disableButtons();
+}
+
+function disableButtons() {
+  const buttons = Array.from(document.querySelectorAll(".btn-choice"));
+  buttons.forEach((btn) => (btn.disabled = true));
 }
 
 function resetGame() {
   _playerScore = 0;
   _computerScore = 0;
   gameCount = 0;
-  setScore();
+  updateScores();
+  game();
 }
 
 function isPlayerWinner(a, b) {
