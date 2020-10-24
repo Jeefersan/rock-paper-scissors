@@ -1,6 +1,7 @@
 let _playerScore = 0;
 let _computerScore = 0;
 let gameCount = 0;
+const totalPlayRounds = 5;
 
 setupGameButtons();
 
@@ -13,28 +14,12 @@ function computerPlay() {
 }
 
 function game() {
-  let playRounds = 5;
-
   alert("The battle has started!");
   setScore();
 
   setupChoiceButtons();
 
   displayRoundInfo();
-
-  // alert(
-  //   `Results of this game:\nPlayer has won ${playerScore} rounds and computer has won ${computerScore}`
-  // );
-
-  // if (_playerScore == _computerScore) {
-  //   alert("The final result is a Tie!");
-  // } else {
-  //   if (_playerScore > _computerScore) {
-  //     alert("Congratulations, you are the winner!");
-  //   } else {
-  //     alert("Too bad, computer wins!");
-  //   }
-  // }
 }
 
 function setupChoiceButtons() {
@@ -93,6 +78,10 @@ function playRound(playerSelection) {
 
   displayResult(result);
   gameCount++;
+
+  if (gameCount == totalPlayRounds) {
+    announceWinner();
+  }
 }
 
 function displayRoundInfo() {
@@ -101,6 +90,22 @@ function displayRoundInfo() {
     roundInfo.textContent = "FINAL ROUND!";
   } else {
     roundInfo.textContent = "ROUND: " + gameCount;
+  }
+}
+
+function announceWinner() {
+  alert(
+    `Results of this game:\nPlayer has won ${playerScore} rounds and computer has won ${computerScore}`
+  );
+
+  if (_playerScore == _computerScore) {
+    alert("The final result is a Tie!");
+  } else {
+    if (_playerScore > _computerScore) {
+      alert("Congratulations, you are the winner!");
+    } else {
+      alert("Too bad, computer wins!");
+    }
   }
 }
 
